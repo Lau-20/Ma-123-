@@ -1,0 +1,77 @@
+#Méthode du point fixe
+from math import *
+
+x0=0
+epsilon= 1e-11
+Nitermax= 100
+
+def pointfixe(x0, g) :
+    n=0
+    xold=x0
+    xnew=g(xold)
+    erreur=g(xold)-xold
+
+    while abs(erreur)>epsilon and n<Nitermax :
+        xnew=g(xold)
+        n=n+1
+        erreur=xnew-xold
+        xold=xnew
+    print(n)
+    return(xnew)
+
+
+# équation 1
+
+def g1(x):
+    return(sqrt(8/exp(x)))
+
+print(pointfixe(1,g1))
+
+# équation 2
+
+def g2(x):
+    return(log(abs(-sin(x)+9)))
+
+print(pointfixe(2,g2))
+
+# équation 3
+
+def g3(x):
+    return((2-x**3)/3)
+
+print(pointfixe(0.6,g3))
+
+# équation 4
+
+def g4(x):
+    return(-sqrt(abs(((-3*x + 9)/x))))
+
+print(pointfixe(1.6,g4))
+
+# équation 5
+
+def g5(x):
+    return((11-2*x)/x**3)
+
+print(pointfixe(2.1,g5))
+
+def g5bis(x):
+    return(-sqrt(abs((11-2*x)/x**2)))
+
+print(pointfixe(-4.5,g5bis))
+
+# équation 6
+
+def g6(x):
+    return(acos((x-3)/2))
+print (pointfixe(2,g6))
+
+# équation x**2 = cos x
+
+def g(x):
+    return(-sqrt(cos(x)))
+print (pointfixe(0.8,g))
+
+def gbis(x):
+    return(-sqrt(cos(x)))
+print (pointfixe(-0.8,gbis))
